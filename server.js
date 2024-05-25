@@ -24,6 +24,14 @@ app.get("/register", (req, res) =>
     res.sendFile(path.join(__dirname, "public", "register.html"))
 );
 
+app.get("/forget", (req, res) =>
+    res.sendFile(path.join(__dirname, "public", "forget-password.html"))
+);
+
+app.get("/reset-password", (req, res) =>
+    res.sendFile(path.join(__dirname, "public", "reset-password.html"))
+);
+
 app.get("/panel", (req, res) =>
     res.sendFile(path.join(__dirname, "public", "panel.html"))
 );

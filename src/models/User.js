@@ -1,7 +1,6 @@
 const mongoose = require("mongoose");
 const timestamp = require("mongoose-timestamp");
 
-
 const userSchema = new mongoose.Schema({
     username: {
         type: String,
@@ -18,17 +17,25 @@ const userSchema = new mongoose.Schema({
         required: true,
     },
     tokens: {
-        type: [],
-        default: []
+        type: Array,
+        default: [],
     },
     isAdmin: {
         type: Boolean,
-        default: false
+        default: false,
     },
-    isActive: { 
+    isActive: {
         type: Boolean,
-        default: true
-    }
+        default: true,
+    },
+    passwordResetToken: {
+        type: String,
+        default: null,
+    },
+    passwordResetTokenExpires: {
+        type: Date,
+        default: null,
+    },
 });
 
 userSchema.plugin(timestamp);

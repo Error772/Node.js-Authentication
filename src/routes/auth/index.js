@@ -12,4 +12,18 @@ router.post(
 
 router.post("/login", validator.loginValidator(), AuthController.login);
 
+router.post(
+    "/forget-password",
+    validator.forgetValidator(),
+    AuthController.forget_Password
+);
+
+router.get("/reset-password", AuthController.reset_Password_Redirect);
+
+router.post(
+    "/reset-password",
+    validator.reset_PassValidator(),
+    AuthController.reset_Password
+);
+
 module.exports = router;

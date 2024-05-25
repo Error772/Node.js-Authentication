@@ -1,4 +1,4 @@
-const { response } = require("../controller");
+const { response, display_error } = require("../controller");
 class UserController {
     async me(req, res) {
         try {
@@ -15,7 +15,7 @@ class UserController {
             });
         } catch (error) {
             console.error("Error while getting user info:", error);
-            res.status(500).json("Internal Server Error.");
+            display_error(res);
         }
     }
 
@@ -35,7 +35,7 @@ class UserController {
             });
         } catch (error) {
             console.log("Error while logging out:", error);
-            res.status(500).json("Internal Server Error.");
+            display_error(res);
         }
     }
 }

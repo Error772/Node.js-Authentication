@@ -12,6 +12,11 @@
             href="https://cdnjs.cloudflare.com/ajax/libs/font-awesome/5.15.4/css/all.min.css"
             rel="stylesheet"
         />
+        <script
+            src="https://www.google.com/recaptcha/api.js"
+            async
+            defer
+        ></script>
         <style>
             body {
                 background-color: #f8f9fa;
@@ -82,12 +87,17 @@
             .login-link a:hover {
                 text-decoration: underline;
             }
-            .error-message {
+            .message {
                 color: red;
                 margin-top: 10px;
                 display: none;
                 text-align: center;
                 margin-bottom: 14px;
+            }
+            .g-recaptcha {
+                display: inline-block;
+                transform: scale(1);
+                transform-origin: 0 0;
             }
         </style>
     </head>
@@ -100,10 +110,11 @@
                         <p class="text-center">
                             Welcome back! Please login to your account...
                         </p>
-                        <form onsubmit="login(event)">
+                        <form id="login-form" onsubmit="login(event)">
                             <div class="form-group">
                                 <input
                                     id="username"
+                                    name="username"
                                     type="text"
                                     class="form-control"
                                     placeholder="Username"
@@ -113,13 +124,25 @@
                             <div class="form-group">
                                 <input
                                     id="password"
+                                    name="password"
                                     type="password"
                                     class="form-control"
                                     placeholder="Password"
                                     required
                                 />
                             </div>
+                            <div class="form-group text-center">
+                                <div
+                                    class="g-recaptcha"
+                                    data-sitekey="6LcrOOQpAAAAAKjSZwa3copLzzAfgYgxZAI2NaQ9"
+                                ></div>
+                            </div>
                             <div class="form-group">
+                                <input
+                                    type="hidden"
+                                    id="recaptchaToken"
+                                    name="recaptchaToken"
+                                />
                                 <button
                                     type="submit"
                                     class="btn btn-primary btn-block"
@@ -127,22 +150,24 @@
                                     Login
                                 </button>
                             </div>
-                            <div class="error-message" id="error-message"></div>
+                            <div class="message" id="message"></div>
                         </form>
                         <ul class="social-login text-center">
                             <li>
-                                <a href="#" class="btn btn-primary"
-                                    ><i class="fab fa-facebook-f"></i
-                                ></a>
+                                <a href="#" class="btn btn-primary">
+                                    <i class="fab fa-facebook-f"></i>
+                                </a>
                             </li>
                             <li>
-                                <a href="#" class="btn btn-primary"
-                                    ><i class="fab fa-twitter"></i
-                                ></a>
+                                <a href="#" class="btn btn-primary">
+                                    <i class="fab fa-twitter"></i>
+                                </a>
                             </li>
                         </ul>
                         <div class="forgot-password">
-                            <a href="#">Forgot password?</a>
+                            <a href="./forget-password.html"
+                                >Forgot password?</a
+                            >
                         </div>
                         <div class="register-link">
                             Don't have an account?
@@ -153,8 +178,14 @@
             </div>
         </div>
 
+        <script>
+            const authToken = localStorage.getItem("authToken");
+            if (authToken) {
+                window.location.href = "./panel";
+            }
+        </script>
         <script src="./script.js"></script>
-        <script src="https://code.jquery.com/jquery-3.5.1.slim.min.js"></script>
+        <script src="https://code.jquery.com/jquery-3.5.1.min.js"></script>
         <script src="https://cdn.jsdelivr.net/npm/@popperjs/core@1.16.1/dist/umd/popper.min.js"></script>
         <script src="https://stackpath.bootstrapcdn.com/bootstrap/4.5.2/js/bootstrap.min.js"></script>
     </body>

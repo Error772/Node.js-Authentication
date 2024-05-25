@@ -5,4 +5,12 @@ module.exports = class {
             data,
         });
     }
+
+    static display_error(res) {
+        return this.response({
+            res,
+            code: 500,
+            message: "Internal Server Error.",
+        });
+    }
 };

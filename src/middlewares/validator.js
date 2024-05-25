@@ -32,7 +32,16 @@ function registerValidator() {
         check("username").not().isEmpty().withMessage("username cant be empty"),
         check("email").isEmail().withMessage("invalid email"),
         check("password").not().isEmpty().withMessage("password cant be empty"),
-        checkForRequiredAndExtraParameters(["username", "email", "password"]),
+        check("recaptchaToken")
+            .not()
+            .isEmpty()
+            .withMessage("recaptchaToken cant be empty"),
+        checkForRequiredAndExtraParameters([
+            "username",
+            "email",
+            "password",
+            "recaptchaToken",
+        ]),
     ];
 }
 
@@ -41,7 +50,15 @@ function loginValidator() {
         validate,
         check("username").not().isEmpty().withMessage("username cant be empty"),
         check("password").not().isEmpty().withMessage("password cant be empty"),
-        checkForRequiredAndExtraParameters(["username", "password"]),
+        check("recaptchaToken")
+            .not()
+            .isEmpty()
+            .withMessage("recaptchaToken cant be empty"),
+        checkForRequiredAndExtraParameters([
+            "username",
+            "password",
+            "recaptchaToken",
+        ]),
     ];
 }
 
@@ -50,6 +67,27 @@ function passValidator() {
         validate,
         check("password").not().isEmpty().withMessage("password cant be empty"),
         checkForRequiredAndExtraParameters(["password"]),
+    ];
+}
+
+function forgetValidator() {
+    return [
+        validate,
+        check("email").not().isEmpty().withMessage("email cant be empty"),
+        check("recaptchaToken")
+            .not()
+            .isEmpty()
+            .withMessage("recaptchaToken cant be empty"),
+        checkForRequiredAndExtraParameters(["email", "recaptchaToken"]),
+    ];
+}
+
+function reset_PassValidator() {
+    return [
+        validate,
+        check("newPassword").not().isEmpty().withMessage("newPassword cant be empty"),
+        check("token").not().isEmpty().withMessage("token cant be empty"),
+        checkForRequiredAndExtraParameters(["newPassword", "token"]),
     ];
 }
 
@@ -80,4 +118,6 @@ module.exports = {
     registerValidator,
     loginValidator,
     passValidator,
+    forgetValidator,
+    reset_PassValidator,
 };

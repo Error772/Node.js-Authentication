@@ -1,57 +1,54 @@
-# 🚀 Node.js Authentication Project
+# 🚀 Node.js Authentication Project (Version 2) Update 2024/05/25 ✅
 
-## 📝 Description
+## ✨ What's New in Version 2
 
-This is a basic Node.js authentication project that provides login, register, and user panel functionalities. It follows JSON Web Token (JWT) for security and MongoDB for database storage. The project includes both backend and frontend components, with the backend written in Node.js and the frontend using Bootstrap, JavaScript, HTML, and CSS.
+### Front-End Changes🔄
 
-## ✨ Features
+1. **Improved Security with reCAPTCHA v2**:
 
--   🔒 User authentication with login and register pages
--   📋 User panel for managing account settings
--   🔑 Admin and user roles with corresponding rights
--   ✅ Input validation for HTTP requests
+    - Integrated reCAPTCHA v2 functionality into the login, registration, and forgot password pages to mitigate automated bot attacks and enhance overall security.
 
-## 📦 Packages Used
+2. **Forget Password Feature**:
+    - Added a new forget password page, enabling users to reset their passwords securely.
+    - Created the `reset-password.html` page to facilitate the password reset process for users who have forgotten their credentials.
 
--   [axios](https://www.npmjs.com/package/axios) - Promise-based HTTP client for the browser and Node.js
--   [bcryptjs](https://www.npmjs.com/package/bcryptjs) - For hashing passwords securely
--   [body-parser](https://www.npmjs.com/package/body-parser) - Middleware for parsing incoming request bodies
--   [express](https://www.npmjs.com/package/express) - Web framework for Node.js
--   [express-validator](https://www.npmjs.com/package/express-validator) - Middleware for input validation
--   [jsonwebtoken](https://www.npmjs.com/package/jsonwebtoken) - For generating and verifying JSON Web Tokens (JWT)
--   [mongoose](https://www.npmjs.com/package/mongoose) - MongoDB object modeling for Node.js
--   [mongoose-timestamp](https://www.npmjs.com/package/mongoose-timestamp) - Mongoose plugin for adding createdAt and updatedAt timestamps to documents
+### Back-End Changes🛠️
 
-## 🚀 Getting Started
+1. **Enhanced Configuration Management**:
 
-1. Clone the repository: `git clone <repository-url>`
-2. Install dependencies with `npm install`.
-3. Set up MongoDB database
-4. Access the application in your browser at `http://localhost:3000/register`.
+    - Implemented the `config` package and introduced a dedicated `config` folder.
+    - The `default.json` file within contains essential configurations such as SMTP settings, JWT secret key, reCAPTCHA keys, and database information.
 
-## 📄 Usage
+2. **Reset Password Implementation**:
 
-1. **Login**: Access the login page and enter your credentials to log in.
-2. **Register**: If you don't have an account, you can register on the registration page.
-3. **User Panel**: Once logged in, you'll be redirected to the user panel where you can manage your account settings.
-4. **Logout**: You can logout by clicking the logout button.
+    - Developed the backend logic for the forget password feature using SHA-3 hashing tokens for enhanced security.
 
-## 🛠️ Technologies Used
+3. **Unified Error Handling**:
 
--   Node.js
--   Express.js
--   MongoDB
--   JSON Web Token (JWT)
--   Bootstrap
--   JavaScript
--   HTML
--   CSS
+    - Streamlined error handling by creating a `display_error(res)` static function within `controller.js`.
+    - This function simplifies the process of handling internal server errors and prevents code redundancy.
+
+4. **Model Updates**:
+
+    - Updated the `User` model to accommodate new features and ensure compatibility with the latest enhancements.
+
+5. **Bug Fixes**:
+    - Addressed various bugs and issues to improve the overall stability and reliability of the application✅
+
+## 📦 Added Packages
+
+-   [config](https://www.npmjs.com/package/config) - Configuration management utility for Node.js applications.
+-   [nodemailer](https://www.npmjs.com/package/nodemailer) - Easy as cake e-mail sending from your Node.js applications.
 
 ## 🚧 Future Enhancements
 
--   Add a forgot password page
--   Add an admin panel
--   Implement additional security measures
+- Implement an admin panel.
+- Add email verification for registration:
+    - Implement a feature to send verification codes to users' email addresses upon registration.
+    - Users will need to confirm their email addresses by entering the verification code received via email.
+- Enhance security measures.
+
+
 
 ## 🤝 Contributing
 
@@ -63,7 +60,7 @@ This project is licensed under the [MIT License](https://opensource.org/licenses
 
 ## 🌟 Authors
 
-Ali Ayoubi - [Telegram : Error772](https://t.me/Error772)
+Ali Ayoubi - [Telegram: Error772](https://t.me/Error772)
 
 ## 📧 Contact
 

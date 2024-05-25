@@ -1,4 +1,5 @@
 const jwt = require("jsonwebtoken");
+const config = require("config");
 const User = require("../models/User");
 
 async function isLoggined(req, res, next, auth = true) {
@@ -20,7 +21,7 @@ async function isLoggined(req, res, next, auth = true) {
 
 async function handleToken(req, res, token) {
     try {
-        const decoded = jwt.verify(token, "xice_team");
+        const decoded = jwt.verify(token, config.get("jwt_key"));
         const user = await User.findById(decoded.id);
         if (!user.tokens.includes(token)) {
             return res.status(400).send("Invalid token");
@@ -59,7 +60,7 @@ async function isAdmin(req, res, next) {
     }
 
     try {
-        const decoded = jwt.verify(token, "xice_team");
+        const decoded = jwt.verify(token, config.get("jwt_key"));
         const user = await User.findById(decoded._id);
 
         if (!user.isAdmin) {
